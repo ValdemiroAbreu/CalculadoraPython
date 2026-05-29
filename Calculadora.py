@@ -19,6 +19,14 @@ def multiplicacao(valorP,valorS):
     return valorP * valorS
 def divisao(valorP,valorS):
     return valorP / valorS
+def definicao_operacao(opcao):
+    if opcao == 1:
+        return "Soma"
+    elif opcao == 2:
+        return "Subtração"
+    elif opcao == 2:
+
+    return ""
 
 i = 0
 while i <= 0:
@@ -32,6 +40,7 @@ while i <= 0:
         "0 - Encerrar operação\n"
     )
     opcao = int(input())
+    operacao = opcao
     print(" ")
     if opcao == 1:
         print("===Somar===\n"+
@@ -47,16 +56,16 @@ while i <= 0:
         f"Segundo número: {valorS}\n" +
         f"Resultado da soma: {resultado} \n")
         
-        """
+        
         print("===Somar===\n" +
         "1 - Continuar a soma\n" +
         "2 - Realizar uma nova soma\n" +
         "3 - Realizar uma nova operação\n" +
         "0 - Encerrar operação\n")
-        opcao = int ((input))
+        opcao = int (input())
         if opcao == 1:
             text_soma()
-        """
+        
     elif opcao == 2:
         print("===Subtração===\n"+
         "Digite o primeiro número \n")
