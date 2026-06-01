@@ -1,18 +1,57 @@
-def soma(valorP,valorS):
-    return valorP + valorS
-def text_soma():
-        print("===Somar===\n"+
-        "Digite o primeiro número \n")
-        valorP = float(input())
-        print("===Somar===\n" +
+def text_operacao(opcao,valorP = None ):
+        operacao = definicao_operacao(opcao)
+
+        print(f"==={operacao}===\n")
+        
+        if valorP is None:
+            print("Digite o primeiro número: \n")
+            valorP = float(input())
+        else:
+             print(f"Resultado da última operação: {valorP}\n")
+        
+        print(f"==={operacao}===\n" +
         f"Primeiro número: {valorP}\n" +
         "Digite o segundo valor\n")
         valorS = float(input())
-        resultado = soma(valorP,valorS)
-        print("===Somar===\n" +
+        
+        if operacao == "Soma":
+            resultado = soma(valorP,valorS)
+        elif operacao == "Subtração":
+            resultado = subtracao(valorP,valorS)
+        elif operacao == "Multiplicação":
+            resultado = multiplicacao(valorP,valorS)
+        elif operacao == "Divisão":                
+            resultado = divisao(valorP,valorS)            
+        
+        print(f"==={operacao}===\n" +
         f"Primeiro número: {valorP}\n" +
         f"Segundo número: {valorS}\n" +
-        f"Resultado da soma: {resultado} \n")
+        f"Resultado da {operacao.lower()}: {resultado} \n")
+        resultado_continuacao = text_operacao(opcao,0)
+        
+        texto_continuar_operacao(opcao,resultado_continuacao)
+        return resultado_continuacao
+
+
+def texto_continuar_operacao(opcao,resultado_continuacao):
+    operacao = definicao_operacao(opcao)
+    print(f"==={operacao}===\n" +
+        f"1 - Continuar a {operacao.lower()}\n" +
+        f"2 - Realizar uma nova {operacao.lower()}\n" +
+        "3 - Realizar uma nova operação\n" +
+        "0 - Encerrar operação\n")
+    opcao_cont = int (input())
+    if opcao_cont == 1:
+        return text_operacao(opcao, resultado_continuacao)
+    elif opcao_cont == 2:
+        text_operacao(opcao)
+    elif opcao_cont == 3:
+        return
+    elif opcao_cont == 0:
+        exit()
+             
+def soma(valorP,valorS):
+    return valorP + valorS
 def subtracao(valorP,valorS):
     return valorP - valorS
 def multiplicacao(valorP,valorS):
@@ -24,9 +63,10 @@ def definicao_operacao(opcao):
         return "Soma"
     elif opcao == 2:
         return "Subtração"
-    elif opcao == 2:
-
-    return ""
+    elif opcao == 3:
+        return "Multiplicação"
+    elif opcao == 4:
+        return "Divisão"
 
 i = 0
 while i <= 0:
@@ -40,73 +80,19 @@ while i <= 0:
         "0 - Encerrar operação\n"
     )
     opcao = int(input())
-    operacao = opcao
     print(" ")
     if opcao == 1:
-        print("===Somar===\n"+
-        "Digite o primeiro número \n")
-        valorP = float(input())
-        print("===Somar===\n" +
-        f"Primeiro número: {valorP}\n" +
-        "Digite o segundo valor\n")
-        valorS = float(input())
-        resultado = soma(valorP,valorS)
-        print("===Somar===\n" +
-        f"Primeiro número: {valorP}\n" +
-        f"Segundo número: {valorS}\n" +
-        f"Resultado da soma: {resultado} \n")
-        
-        
-        print("===Somar===\n" +
-        "1 - Continuar a soma\n" +
-        "2 - Realizar uma nova soma\n" +
-        "3 - Realizar uma nova operação\n" +
-        "0 - Encerrar operação\n")
-        opcao = int (input())
-        if opcao == 1:
-            text_soma()
-        
+        resultado_continuacao = text_operacao(opcao)
+        #while True:
+           # texto_continuar_operacao(opcao, resultado_continuacao)
     elif opcao == 2:
-        print("===Subtração===\n"+
-        "Digite o primeiro número \n")
-        valorP = float(input())
-        print("===Subtração===\n" +
-        f"Primeiro número: {valorP}\n" +
-        "Digite o segundo valor\n")
-        valorS = float(input())
-        resultado = subtracao(valorP,valorS)
-        print("===Subtração===\n" +
-        f"Primeiro número: {valorP}\n" +
-        f"Segundo número: {valorS}\n" +
-        f"Resultado da subtração: {resultado} \n")
+                text_operacao(opcao)
 
     elif opcao == 3:
-        print("===Multiplicação===\n"+
-        "Digite o primeiro número \n")
-        valorP = float(input())
-        print("===Multiplicação===\n" +
-        f"Primeiro número: {valorP}\n" +
-        "Digite o segundo valor\n")
-        valorS = float(input())
-        resultado = multiplicacao(valorP,valorS)
-        print("===Multiplicação===\n" +
-        f"Primeiro número: {valorP}\n" +
-        f"Segundo número: {valorS}\n" +
-        f"Resultado da multiplicação: {resultado} \n")
+                text_operacao(opcao)
 
     elif opcao == 4:
-        print("===Divisão===\n"+
-        "Digite o primeiro número \n")
-        valorP = float(input())
-        print("===Divisão===\n" +
-        f"Primeiro número: {valorP}\n" +
-        "Digite o segundo valor\n")
-        valorS = float(input())
-        resultado = divisao(valorP,valorS)
-        print("===Divisão===\n" +
-        f"Primeiro número: {valorP}\n" +
-        f"Segundo número: {valorS}\n" +
-        f"Resultado da divisão: {resultado} \n")
+                text_operacao(opcao)
 
     elif opcao == 0:
         break
